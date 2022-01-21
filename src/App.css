@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0 auto;
+    background: Black;
+    min-width: 230px;
+    max-width: 550px;
+    font-weight: 300;
+}
+.caption {
+    width: 100%;
+    font-size: 100px;
+    font-weight: 100;
+    text-align: center;
+    color: white;
+    margin: 40px auto;
+}
+
+.clock {
+    width: 100%;
+    font-size: 100px;
+    font-weight: 100;
+    text-align: center;
+    color: white;
+}
+
+.main {
+    padding:20px;
+    border: lightblue;
+    border-radius: 50px;
+}
+
+.case {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-size: 24px;
+}
+
+.wait {
+    border-width: 5px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 100px;
+    margin: 10px;
+    font-size: 30px;
+    height: 85px;
+    font-weight: bold;
+}
+.reset {
+    border-width: 5px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 100px;
+    margin: 10px;
+    font-size: 23px;
+    height: 85px;
+    font-weight: bold;
+}
+#start-stop{
+    border-width: 5px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 100px;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 30px;
+    height: 85px;
+}
