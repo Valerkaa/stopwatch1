@@ -11,6 +11,7 @@ function App() {
         //const delay = clickTime - prevClickTime;
     const handleClick = () => {
         setTimerOn(!isTimerOn);
+         setTime(0);
     };
 
 
