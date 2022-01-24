@@ -1,41 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import {interval, Subject,} from 'rxjs';
+import {interval, Subject, buffer, debounceTime, filter,map,} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import './App.css';
-
 function App() {
     const [time, setTime] = useState(0);
-    const [isTimerOn, setTimerOn,prevClickTime,setPrevClickTime] = useState(false);
-    const [startStopBtn, setStartStopBtn] = useState();
-        //const clickTime = Date.now();
-        //const delay = clickTime - prevClickTime;
+    const [isTimerOn, setTimerOn] = useState(false);
     const handleClick = () => {
         setTimerOn(!isTimerOn);
          setTime(0);
     };
-
-
+    const handleClickStop = () => {
+        setTimerOn(!isTimerOn);
+        setTime(0);
+    };
     const handleWait = () => {
-            //setPrevClickTime(clickTime);
-            //if (delay >= 300) {
-             // return;
-           // }
-        if (time !== 0) {
-            setTimerOn(false);
-        }
+        waitClick$.next();
     }
+    const waitClick$ = new Subject()
+
+    waitClick$.pipe(
+        buffer(waitClick$.pipe(debounceTime(300))),
+        map(item => item.length),
+        filter(item => item === 2),
+    ).subscribe(() => {
+        setTimerOn(false);;
+    })
+
     const handleReset = () => {
         setTime(0);
         setTimerOn(true);
     };
 
     useEffect(() => {
-        if (isTimerOn) {
-            setStartStopBtn('Stop');
-        } else {
-            setStartStopBtn('Start');
-        }
-
         const timeSubject$ = new Subject();
         interval(1000)
             .pipe(takeUntil(timeSubject$))
@@ -65,8 +61,9 @@ function App() {
                         <div className="clock">{(time % 60) < 10 && <span>0</span>}{time % 60}</div>
                     </div>
                     <div className="case">
-                        <button className={isTimerOn ? 'stop' : ''} onClick={handleClick} id="start-stop">{startStopBtn}</button>
-                        <button className="wait" onDoubleClickCapture={handleWait} id="wait">Wait</button>
+                        <button className="start" onClick={handleClick}>Start</button>
+                        <button className="stop" onClick={handleClickStop}>Stop</button>
+                        <button className="wait" onClick={handleWait}  id="wait">Wait</button>
                         <button className="reset" onClick={handleReset}>Reset</button>
                     </div>
 

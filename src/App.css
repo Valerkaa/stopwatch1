@@ -63,7 +63,17 @@ body {
     height: 85px;
     font-weight: bold;
 }
-#start-stop{
+.start{
+    border-width: 5px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 100px;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 30px;
+    height: 85px;
+}
+.stop{
     border-width: 5px;
     cursor: pointer;
     text-align: center;
